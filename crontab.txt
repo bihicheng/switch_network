@@ -1,0 +1,1 @@
+* * * * * bash /path/to/manual_network.sh >> /data/logs/network.log
