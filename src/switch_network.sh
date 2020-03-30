@@ -27,8 +27,6 @@ function ping_ip {
     fi
 }
 
-
-
 function main {
     netstatus=$(nmcli general status | awk 'NR > 1 { print $2 }')
     ifcfg_path="/etc/sysconfig/network-scripts/ifcfg-有线连接_1"
@@ -45,8 +43,7 @@ function main {
         target_gate="192.168.124.1"
     fi
 
-    echo_with_date "$ip NETWORK STATUS $netstatus  !"
-    # if [[ "$netstatus" == "无" || ("$netstatus" == "受限" && "$ip" == "192.168.31.63") ]];
+    echo_with_date "$ip NETWORK STATUS $netstatus !"
     if [[ "$netstatus" == "无" ]];
     then
         echo_with_date "switching to $target_ip"
@@ -62,12 +59,7 @@ function main {
         echo_with_date "$result"
         sleep 30s
     else
-        if [ "$ip" == "192.168.31.63" ]
-        then
-            pingret=$(ping_ip $gateway)
-        else
-            pingret=$(ping_ip $gateway)
-        fi
+        pingret=$(ping_ip $gateway)
         echo_with_date "ping ret $gateway $pingret"
         if [ "$pingret" == "Unreachable" ]
         then
